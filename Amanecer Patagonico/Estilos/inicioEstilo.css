@@ -1,0 +1,56 @@
+
+body {
+  background-image: url('Imagenes/Fondo.jpg'); 
+
+    background-color: #F8F7F4;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.form-container {
+  background-color: #F8F7F4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  width: 400px;
+  
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
+  background-color:#F8F7F4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  width: 400px;
+}
+
+.btn-primary,
+.btn-secondary {
+  margin-top: 10px;
+  color: #ffffff; 
+  background-color: #6883A6; 
+  border: none; 
+  font-size: 14px; 
+  padding: 10px 20px; 
+  transition: background-color 0.3s ease; 
+  width: 100%; 
+  border-radius: 5px; 
+  cursor:pointer;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: #A5B9D1; 
+}
+
+
