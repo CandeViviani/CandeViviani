@@ -15,7 +15,7 @@
       <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
       <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
-      <div id="emailError" class="form-text text-danger"></div> <!-- Contenedor para el mensaje de error -->
+      <div id="emailError" class="form-text text-danger"></div> 
     </div>
 
     <div class="mb-3">
@@ -24,7 +24,7 @@
       <div id="passwordHelpBlock" class="form-text">
         Su contraseña debe tener un máximo de 12 caracteres, contener al menos una letra mayúscula, y solo puede contener letras y números.
       </div>
-      <div id="passwordError" class="form-text text-danger"></div> <!-- Contenedor para el mensaje de error -->
+      <div id="passwordError" class="form-text text-danger"></div> 
     </div>
 
     <a type="button" class="btn btn-primary btn-lg" href="inde2.html" onclick="return validateForm()">Ingresar</a>
@@ -33,33 +33,32 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <!-- Script de validación -->
+  
   <script>
     function validateForm() {
-      // Validación de contraseña
       const passwordInput = document.getElementById('exampleInputPassword1');
       const password = passwordInput.value;
       const passwordError = document.getElementById('passwordError');
-      const passwordRegex = /^(?=.*[A-Z])[A-Za-z0-9]{1,12}$/;
+      const passwordRegex = /^(?=.*[A-Z])[A-Za-z0-9]{1,12}$/;//contraseña con mayusculas, numeros y no mas de 12 caracteres
 
       if (!passwordRegex.test(password)) {
         passwordError.textContent = 'La contraseña debe tener un máximo de 12 caracteres, contener al menos una letra mayúscula, y solo puede contener letras y números.';
-        return false; // Previene la navegación si la validación falla
+        return false; 
       } else {
-        passwordError.textContent = ''; // Limpia el mensaje de error si la validación es exitosa
+        passwordError.textContent = ''; 
       }
 
-      // Validación de email
+ 
       const emailInput = document.getElementById('exampleInputEmail1');
       const email = emailInput.value;
       const emailError = document.getElementById('emailError');
-      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;//email valido
 
       if (!emailRegex.test(email)) {
         emailError.textContent = 'El email no cumple con el formato requerido.';
-        return false; // Previene la navegación si la validación falla
+        return false; 
       } else {
-        emailError.textContent = ''; // Limpia el mensaje de error si la validación es exitosa
+        emailError.textContent = ''; 
       }
       return true;
     }
