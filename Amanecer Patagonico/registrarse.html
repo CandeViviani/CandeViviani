@@ -1,70 +1,104 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formulario</title>
-  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="Estilos/registrarse.css">
   </head>
 
-
   <body>
-    <div class="form-container">
-    <h1 >Inicio de sesion</h1>
+    <div class="form-container container mt-5">
+      <h1>Inicio de sesión</h1>
 
-    <div class="form-floating mb-2">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Nombre</label>
-      </div>
+      <form id="registerForm">
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="floatingName" placeholder="Nombre" required>
+          <label for="floatingName">Nombre</label>
+        </div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Apellido</label>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="floatingSurname" placeholder="Apellido" required>
+          <label for="floatingSurname">Apellido</label>
+        </div>
+
+        <div class="form-floating mb-2">
+          <input type="email" class="form-control" id="floatingEmail" placeholder="email@example.com" required>
+          <label for="floatingEmail">Email</label>
+          <div id="emailError" class="form-text text-danger"></div>
+        </div>
+
+        <div class="mb-2">
+          <label for="inputPassword5" class="form-label">Contraseña</label>
+          <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" required>
+          <div id="passwordHelpBlock" class="form-text">
+            Su contraseña debe tener un máximo de 12 caracteres, contener al menos una letra mayúscula, y solo puede contener letras y números.
+          </div>
+          <div id="passwordError" class="form-text text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="birthDate" class="form-label">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="birthDate" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="countrySelect" class="form-label">Selecciona tu país</label>
+          <select class="form-select" id="countrySelect" aria-label="Default select example" required>
+            <option selected disabled>Selecciona tu país</option>
+            <option value="1">Argentina</option>
+            <option value="2">Chile</option>
+            <option value="3">Perú</option>
+          </select>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
+          <label class="form-check-label" for="defaultCheck1">
+            Acepto términos y condiciones
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">Registrarse</button>
+      </form>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<br> 
-      <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-      </div>
+    <script>
+      document.getElementById('registerForm').addEventListener('submit', function(event) {
+        let valid = true;
 
-<br>
-      <label for="inputPassword5" class="form-label">Contraseña</label>
-      <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
-     <div id="passwordHelpBlock" class="form-text">
-      Su contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener espacios, caracteres especiales ni emoji.
-     </div>
+        const passwordInput = document.getElementById('inputPassword5');
+        const password = passwordInput.value;
+        const passwordError = document.getElementById('passwordError');
+        const passwordRegex = /^(?=.*[A-Z])[A-Za-z0-9]{1,12}$/;//Contraseña con mayusculas y numeros y no mas de 12 caracteres
 
-<br>
-<p>Fecha de nacimiento </p>
-    <div ><input type="date" name="" id=""></div>
+        if (!passwordRegex.test(password)) {
+          passwordError.textContent = 'La contraseña debe tener un máximo de 12 caracteres, contener al menos una letra mayúscula, y solo puede contener letras y números.';
+          valid = false; 
+        } else {
+          passwordError.textContent = ''; 
+        }
 
-<br>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Seleciona tu pais</option>
-    <option value="1">Argentina</option>
-    <option value="2">Chile</option>
-    <option value="3">Peru</option>
-  </select>
+        const emailInput = document.getElementById('floatingEmail');
+        const email = emailInput.value;
+        const emailError = document.getElementById('emailError');
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  <br> 
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-    <label class="form-check-label" for="defaultCheck1">
-      Acepto terminos y condiciones
-    </label>
-  </div>
+        if (!emailRegex.test(email)) {
+          emailError.textContent = 'El email no cumple con el formato requerido.';
+          valid = false; 
+        } else {
+          emailError.textContent = ''; 
+        }
 
-  <br>
-   <button type="button" class="btn btn-primary btn-lg">Registrarse</button>
-
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</div>
-
+        
+        if (!valid) {
+          event.preventDefault();
+        }
+      });
+    </script>
   </body>
 </html>

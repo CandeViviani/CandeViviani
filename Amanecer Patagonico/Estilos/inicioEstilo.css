@@ -1,4 +1,3 @@
-
 body {
   background-image: url('Imagenes/Fondo.jpg'); 
 
@@ -52,5 +51,6 @@ body {
 .btn-secondary:hover {
   background-color: #A5B9D1; 
 }
+
 
 
